@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'accounts',
+    'todo'
 ]
 
 MIDDLEWARE = [
@@ -51,10 +54,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'todo_list.urls'
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-         "DIRS": [BASE_DIR / "templates"],
+         "DIRS": [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
