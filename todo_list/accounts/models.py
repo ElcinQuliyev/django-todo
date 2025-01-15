@@ -11,4 +11,4 @@ class CustomUser(AbstractUser):
     intelligence = models.PositiveSmallIntegerField(default=10)
     creativity = models.PositiveSmallIntegerField(default=10)
     coins = models.PositiveSmallIntegerField(default=0)
-     
+    
