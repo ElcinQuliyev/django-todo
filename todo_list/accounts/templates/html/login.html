@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<form method="POST" novalidate>
-	{% csrf_token %}
-	<h2>Login</h2>
-	{{form.as_p}}
-	<input type="submit" value="Login" />
-	<p>Don't have an account? <a href="{%url 'register' %}">Register</a></p>
-</form>
+{% block title %}
+    Login
+{% endblock %}
 
-{% endblock content%}
+{% block content %}
+    <div class="login-container">
+        <h1 class="auth-title">Login</h1>
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-errors">
+                {% for error in form.non_field_errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <button type="submit" class="login-button" >Login</button>
+        </form>
+        <p class="auth-text">
+            <span>Don't have an account?</span>
+            <a href="{% url 'register' %}" class="auth-link">Register here</a>
+        </p>
+    </div>
+{% endblock %}
