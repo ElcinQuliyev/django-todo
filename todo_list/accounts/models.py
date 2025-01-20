@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-class CustomUser(AbstractUser):
+class CustomUser(AbstractUser): # adini deyiw yarrag, User qoy, ozel user yaratmisansa goze soxmamalisan
     avatar_img = models.URLField(max_length=255, blank=True, null=True)
     level = models.PositiveSmallIntegerField(default=0)
     xp = models.PositiveSmallIntegerField(default=0)
