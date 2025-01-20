@@ -88,35 +88,35 @@ function updateTaskList() {
     taskElement.className = `task-item bg-zinc-900 hover:shadow-md hover:bg-zinc-800 rounded-lg p-4 ${
       task.completed ? "opacity-70" : ""
     } transform transition-all duration-300`;
-    taskElement.innerHTML = `
-                    <div class="flex flex-col lg:flex-row md:flex-row justify-between items-start">
-                        <div>
-                            <h3 class="font-bold ${
-                              task.completed ? "line-through" : ""
-                            }">${task.title}</h3>
-                            <p class="text-sm text-gray-400">${
-                              task.description || ""
-                            }</p>
-                        </div>
-                        <div class="flex mt-1 lg:m-0 md:m-0 items-center space-x-2">
-                            <span class="px-2 py-1 bg-purple-500/20 rounded-lg text-sm">
-                                ${task.rewardType} +10
-                            </span>
-                            ${
-                              !task.completed
-                                ? `
-                                <button onclick="completeTask(${index})" class="px-2 py-1 bg-green-500/20 text-green-500 rounded-lg hover:bg-green-500/30 transition-colors duration-300">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                            `
-                                : ""
-                            }
-                            <button onclick="deleteTask(${index})" class="px-2 py-1 bg-red-500/20 text-red-500 rounded-lg hover:bg-red-500/30 transition-colors duration-300">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
+    // taskElement.innerHTML = `
+    //                 <div class="flex flex-col lg:flex-row md:flex-row justify-between items-start">
+    //                     <div>
+    //                         <h3 class="font-bold ${
+    //                           task.completed ? "line-through" : ""
+    //                         }">${task.title}</h3>
+    //                         <p class="text-sm text-gray-400">${
+    //                           task.description || ""
+    //                         }</p>
+    //                     </div>
+    //                     <div class="flex mt-1 lg:m-0 md:m-0 items-center space-x-2">
+    //                         <span class="px-2 py-1 bg-purple-500/20 rounded-lg text-sm">
+    //                             ${task.rewardType} +10
+    //                         </span>
+    //                         ${
+    //                           !task.completed
+    //                             ? `
+    //                             <button onclick="completeTask(${index})" class="px-2 py-1 bg-green-500/20 text-green-500 rounded-lg hover:bg-green-500/30 transition-colors duration-300">
+    //                                 <i class="fas fa-check"></i>
+    //                             </button>
+    //                         `
+    //                             : ""
+    //                         }
+    //                         <button onclick="deleteTask(${index})" class="px-2 py-1 bg-red-500/20 text-red-500 rounded-lg hover:bg-red-500/30 transition-colors duration-300">
+    //                             <i class="fas fa-trash"></i>
+    //                         </button>
+    //                     </div>
+    //                 </div>
+    //             `;
     taskList.appendChild(taskElement);
   });
 }
