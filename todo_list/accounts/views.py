@@ -1,7 +1,10 @@
-from .forms import RegisterForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
+
+from .forms import RegisterForm
+
 
 def register_view(request):
     if request.method == 'POST':
@@ -11,12 +14,13 @@ def register_view(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            return redirect('/todo_list')  # Redirect after successful registration
+            return redirect('/todo_list')  
         else:
             return render(request, 'html/register.html', {'form': form})
     else:
         form = RegisterForm()
-        return render(request, 'html/register.html', {'form': form})
+    return render(request, 'html/register.html', {'form': form})
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -24,19 +28,17 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            if 'next' in request.POST:
-                next_page = request.POST.get('next', '/home')  
-                return redirect(next_page)
-            else:
-                return redirect('/todo_list')
+            next_page = request.POST.get('next', '/todo_list')  
+            return redirect(next_page)
         else:
             return render(request, 'html/login.html', {'form': form})
     else:
         form = AuthenticationForm()
-        return render(request, 'html/login.html', {'form': form})
+    return render(request, 'html/login.html', {'form': form})
 
+@login_required
 def logout_view(request):
     if request.method == "POST":
         logout(request)
         return redirect('/login')
-    return redirect('/home')    
+    return redirect('/home')  
